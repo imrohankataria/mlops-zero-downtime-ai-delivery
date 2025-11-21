@@ -52,6 +52,8 @@ jobs:
         uses: codecov/codecov-action@v4
         if: always()
         continue-on-error: true
+        # Note: Requires CODECOV_TOKEN secret for private repositories
+        # This step is optional and will not fail the workflow if codecov is unavailable
 
   build:
     name: Build and Push Docker Image

@@ -17,6 +17,7 @@ NAMESPACE="ai-model-serving"
 SERVICE_NAME="ai-model-service"
 HEALTH_CHECK_RETRIES=5
 HEALTH_CHECK_DELAY=10
+REGISTRY="${CONTAINER_REGISTRY:-ghcr.io/imrohankataria/mlops-zero-downtime-ai-delivery}"
 
 # Print colored output
 log_info() {
@@ -139,7 +140,7 @@ deploy() {
     log_info "Deploying to $target_color environment..."
     
     kubectl set image deployment/ai-model-$target_color \
-        ai-model=ghcr.io/imrohankataria/mlops-zero-downtime-ai-delivery/ai-model:$image_tag \
+        ai-model=$REGISTRY/ai-model:$image_tag \
         -n $NAMESPACE
     
     kubectl set env deployment/ai-model-$target_color \
