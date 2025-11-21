@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-model-blue
+  namespace: ai-model-serving
+  labels:
+    app: ai-model
+    deployment: blue
+spec:
+  type: ClusterIP
+  selector:
+    app: ai-model
+    deployment: blue
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-model-green
+  namespace: ai-model-serving
+  labels:
+    app: ai-model
+    deployment: green
+spec:
+  type: ClusterIP
+  selector:
+    app: ai-model
+    deployment: green
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
+    protocol: TCP
